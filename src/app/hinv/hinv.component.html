@@ -1,11 +1,14 @@
 <!-- Interpolation Binding -->
 <!-- <p class="text-danger">Welcome to {{hotelName}} Hotel</p> -->
 <app-header></app-header>
+<app-header></app-header>
+<app-header></app-header>
+<app-header></app-header>
 
 Number of Rooms:
 <!-- Property Binding -->
 <div [hidden]="hideRooms">
-    <p [innerText]='numberOfRooms'></p>
+	<p [innerText]='numberOfRooms'></p>
 </div>
 
 
@@ -17,21 +20,20 @@ Number of Rooms:
 </div> -->
 
 <button type="button" class="btn btn-success" tooltip="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
-    Simple demo
+	Simple demo
 </button>
 
 
 <div>
-    <button class="btn btn-info" (click)="addNewRoom()">add a room</button>
+	<button class="btn btn-info" (click)="addNewRoom()">add a room</button>
 </div>
 
 <div *ngIf="rooms.availableRooms > 0">
-    <app-rooms-list [rooms]="roomsList"
-    (selectedRoom)="selectRoom($event)"></app-rooms-list>
+	<app-rooms-list [rooms]="roomsList" (selectedRoom)="selectRoom($event)"></app-rooms-list>
 </div>
 
 <div *ngIf="selectedRoom" class="selected-container">
-    {{selectedRoom | json}}
+	{{selectedRoom | json}}
 </div>
 
 <!-- Event Binding -->

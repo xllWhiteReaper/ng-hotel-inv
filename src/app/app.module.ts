@@ -6,13 +6,17 @@ import { HinvComponent } from './hinv/hinv.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RoomsListComponent } from './hinv/rooms-list/rooms-list.component';
 import { HeaderComponent } from './header/header.component';
+import { ContainerComponent } from './container/container.component';
+import { EmployeeComponent } from './employee/employee.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HinvComponent,
     RoomsListComponent,
-    HeaderComponent
+    HeaderComponent,
+    ContainerComponent,
+    EmployeeComponent
   ],
   imports: [
     BrowserModule,

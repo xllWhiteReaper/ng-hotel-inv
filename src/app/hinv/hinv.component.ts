@@ -1,5 +1,9 @@
-import { Component, OnChanges, OnInit, SimpleChanges,
-  ViewChild, AfterViewInit } from '@angular/core';
+import { CssSelector } from '@angular/compiler';
+import {
+  Component, OnChanges, OnInit, SimpleChanges,
+  ViewChild, AfterViewInit, ViewChildren,
+  QueryList
+} from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { Room, RoomList } from './room';
 
@@ -11,6 +15,7 @@ import { Room, RoomList } from './room';
 export class HinvComponent implements OnInit, OnChanges, AfterViewInit {
 
   // Variables
+  counter: number = 0;
   hotelName: string = "Sheraton";
   numberOfRooms: number = 150;
   hideRooms: boolean = false;
@@ -31,7 +36,10 @@ export class HinvComponent implements OnInit, OnChanges, AfterViewInit {
   // This isn't true if you've got some 
   // Asynchronous code inside the child 
   // element
-  @ViewChild(HeaderComponent) headerComponent!:HeaderComponent;
+  // @ViewChild(HeaderComponent) headerComponent!: HeaderComponent;
+
+
+  @ViewChildren(HeaderComponent) headerChildrenArray!: QueryList<HeaderComponent>;
 
   // Constructor
   constructor() {
@@ -111,30 +119,44 @@ export class HinvComponent implements OnInit, OnChanges, AfterViewInit {
   ngAfterViewInit(): void {
     // console.log("Data retrieval");
     // console.log(this.headerComponent);
-    this.headerComponent.title = "Hey yah, I've modified this from the parent component";
+    // this.headerComponent.title = "Hey yah, I've modified this from the parent component";
+  this.headerChildrenArray.forEach(
+    headerChildren=>{
+      // console.log(headerChildren);
+      headerChildren.title = `, Title ${this.counter + 1}`;
+      this.counter ++;
+    }
+  );
+
+  // let myArray:Array<any> = this.headerChildrenArray.toArray();
+  // console.log("My array: ");
+  // console.log(myArray);
+
+    
+    
   }
 
   /* Functions*/
   toggle(): void {
     this.hideRooms = !this.hideRooms;
   }
-  selectRoom(room:RoomList){
+  selectRoom(room: RoomList) {
     this.selectedRoom = room;
     console.log(room);
   }
-  addNewRoom(){
+  addNewRoom() {
     console.log("OK");
     const newRoom: RoomList = {
       roomNumber: 8,
-        roomType: "Deluxe Type",
-        amenities: "AC, TV Cable, Jacuzzi",
-        price: 2300,
-        photos: '-',
-        checkInTime: new Date('14-Nov-2022'),
-        checkOutTime: new Date('19-Nov-2022')
+      roomType: "Deluxe Type",
+      amenities: "AC, TV Cable, Jacuzzi",
+      price: 2300,
+      photos: '-',
+      checkInTime: new Date('14-Nov-2022'),
+      checkOutTime: new Date('19-Nov-2022')
     };
     // this.roomsList.push(newRoom);
-    this.roomsList=[...this.roomsList, newRoom];
+    this.roomsList = [...this.roomsList, newRoom];
     // IMMUTABILITY
 
   }
