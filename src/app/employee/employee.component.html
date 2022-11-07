@@ -1,2 +1,15 @@
-<p>employee works!</p>
+<h1>Employee List!</h1>
 {{empName}} is my employee!
+<div [ngSwitch]="userType">
+	<div *ngSwitchCase="'Admin'">
+		Welcome back Admin!
+		<app-employee-list [employees]="this.companyEmployees"></app-employee-list>
+	</div>
+	<div *ngSwitchCase="'User'">
+		Welcome User, you don't have access to the employee list.
+	</div>
+	<div *ngSwitchCaseDefault>
+		Welcome please identify yourself to proceed.
+	</div>
+
+</div>

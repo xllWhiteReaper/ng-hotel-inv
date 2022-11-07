@@ -1,0 +1,18 @@
+<p>employee-list works!</p>
+
+<table class="table">
+	<tr>
+		<th>Id</th>
+		<th>e-mail</th>
+		<th>First Name</th>
+		<th>Last name</th>
+		<th>Avatar</th>
+	</tr>
+	<tr *ngFor="let employee of this.employees">
+		<td>{{employee.id}}</td>
+		<td>{{employee.email}}</td>
+		<td>{{employee.f_name}}</td>
+		<td>{{employee.l_name}}</td>
+		<td>{{employee.f_name}}.png</td>
+	</tr>
+</table>

@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { AppConfig } from '../../AppConfig/appconfig.interface';
 import { APP_SERVICE_CONFIG } from '../../AppConfig/appconfig.service';
@@ -72,7 +73,8 @@ export class RoomsServiceService {
       checkOutTime: new Date('09-Nov-2022')
     }
   ];
-  constructor(@Inject(APP_SERVICE_CONFIG) private appConfig: AppConfig) { 
+  constructor(@Inject(APP_SERVICE_CONFIG) private appConfig: AppConfig,
+  private Http: HttpClient) { 
     console.log("Creation of Rooms List");
     console.log(appConfig.apiEndpoint);
   }
