@@ -2,6 +2,7 @@ import { PropertyRead } from '@angular/compiler';
 import { Component, ViewChild, ViewContainerRef,
   AfterViewInit, OnInit, ElementRef } from '@angular/core';
 import { HinvComponent } from './hinv/hinv.component';
+import { InitService } from './init.service';
 
 @Component({
   selector: 'app-root',
@@ -9,14 +10,19 @@ import { HinvComponent } from './hinv/hinv.component';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  initialConfig: any;
   title = 'hotelInventoryApp';
   
   userType: string = "Admin";
-
+  constructor(private initService: InitService){
+    console.log("App CONSTRUCTOR");
+  }
   
   @ViewChild ('any', {static: true}) anyDiv!: ElementRef;
   ngOnInit(){
-
+    this.initialConfig = this.initService.getConfig();
+    console.log(this.initialConfig);
+    
   }
 
   addDiv(){
@@ -25,13 +31,16 @@ export class AppComponent implements OnInit {
     num == 1 ? this.anyDiv.nativeElement.setAttribute('class', 'even'): this.anyDiv.nativeElement.setAttribute('class', 'odd');
   }
 
-  // @ViewChild('user', {read: ViewContainerRef}) vcr!: ViewContainerRef;
+  @ViewChild('user', {read: ViewContainerRef}) vcr!: ViewContainerRef;
 
-  // ngAfterViewInit(){
-  //   const componentRef = this.vcr.createComponent(HinvComponent);
-  //   // To modify any Property, you 
-  //   // can use the following code
-  //   componentRef.instance.numberOfRooms = 250;
-  // }
+  ngAfterViewInit(){
+    // const componentRef = this.vcr.createComponent(HinvComponent);
+    // // To modify any Property, you 
+    // // can use the following code
+    // componentRef.instance.numberOfRooms = 250;
+    console.log("ngAfterViewInit");
+    console.log("this.initialConfig");
+    console.log(this.initialConfig);
+  }
   
 }

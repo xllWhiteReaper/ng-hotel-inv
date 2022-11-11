@@ -4,8 +4,12 @@
 <app-header></app-header>
 <app-header></app-header>
 <app-header></app-header>
+<h1>
+	{{totalBytes}} downloaded
 
-Number of Rooms:
+</h1>
+
+Number of Rooms: <span style="font-weight: 700;">{{numberOfPhotos | async}}</span>
 <!-- Property Binding -->
 <div [hidden]="hideRooms">
 	<p [innerText]='numberOfRooms'></p>

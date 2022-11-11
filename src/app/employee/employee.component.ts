@@ -12,16 +12,16 @@ import { EmployeeService } from './services/employee.service';
 })
 export class EmployeeComponent implements OnInit {
 
-  
-
 
   userType:string = "Admin";
   companyEmployees: EmployeeList[]=[];
   empName: string = "Patrick Gumpert";
+  // numberOfEmployees$ = this.employeeServices.getEmployees().pipe();
   constructor(private employeeServices: EmployeeService) { 
 
   }
 
+  
   ngOnInit(): void {
     this.companyEmployees = this.employeeServices.getEmployees();
     console.log('CALLING THE METHOD TO GET THE LIST OF EMPLOYEES FROM THE "DATABASE"');

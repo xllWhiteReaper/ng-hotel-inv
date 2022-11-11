@@ -14,7 +14,7 @@ export class EmployeeService {
   fetchUrl!: string;
   jsonText!: any;
   jsonObject!: any;
-
+  // getEmployees$ = this.http.get<>(this.fetchUrl);
 
   // @ViewChild('employeeList', {read: ViewContainerRef}) vcr!: ViewContainerRef;
 

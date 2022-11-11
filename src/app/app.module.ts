@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from "@angular/common/http"
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { HinvComponent } from './hinv/hinv.component';
@@ -11,6 +11,13 @@ import { ContainerComponent } from './container/container.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { APP_CONFIG, APP_SERVICE_CONFIG } from './AppConfig/appconfig.service';
 import { EmployeeListComponent } from './employee/employee-list/employee-list.component';
+import { InitService } from './init.service';
+
+const initFactory = (initService: InitService) => {
+  return () => initService.init();
+  // This is for getting data before 
+  // the rest of components is created
+};
 
 @NgModule({
   declarations: [
@@ -20,19 +27,21 @@ import { EmployeeListComponent } from './employee/employee-list/employee-list.co
     HeaderComponent,
     ContainerComponent,
     EmployeeComponent,
-    EmployeeListComponent
+    EmployeeListComponent,
   ],
-  imports: [
-    BrowserModule,
-    NgbModule,
-    HttpClientModule,
-  ],
+  imports: [BrowserModule, NgbModule, HttpClientModule],
   providers: [
     {
       provide: APP_SERVICE_CONFIG,
-      useValue: APP_CONFIG
+      useValue: APP_CONFIG,
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initFactory,
+      deps: [InitService],
+      multi: true
     }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
