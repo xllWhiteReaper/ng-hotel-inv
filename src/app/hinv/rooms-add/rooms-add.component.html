@@ -1,0 +1,131 @@
+<!-- <div>
+  OK
+</div> -->
+<!-- There are certain useful things about #roomsForm,
+in this case are:
+roomsForm.pristine
+roomsForm.dirty
+roomsForm.valid
+roomsForm.invalid
+roomsForm.value -->
+<div class="alert alert-success" *ngIf="successMessage">
+  {{successMessage}}
+</div>
+<form #roomsForm="ngForm" action="" (ngSubmit)="addRoom(roomsForm)">
+  <div class="form-group">
+    <input
+      #roomNumber="ngModel"
+      required=""
+      class="form-control"
+      type="number"
+      name="roomNumber"
+      [(ngModel)]="room.roomNumber"
+      id=""
+      placeholder="Room Number"
+      min="0"
+    />
+    <div class="alert alert-danger" *ngIf="!roomNumber.pristine && roomNumber.errors?.['min']">
+      Please Introduce a positive whole number
+    </div>
+    <div class="alert alert-danger" *ngIf="!roomNumber.pristine && roomNumber.errors?.['required']">
+      Please Introduce a number
+    </div>
+  </div>
+  <div class="form-group">
+    <input
+      #roomType="ngModel"
+      required=""
+      class="form-control"
+      type="text"
+      name="roomType"
+      [(ngModel)]="room.roomType"
+      id=""
+      placeholder="Room Type"
+      minlength="6"
+      maxlength="24"
+    />
+    <div class="alert alert-danger" *ngIf="!roomType.pristine && roomType.errors?.['minlength']">
+      Please Introduce a minimum of 5 characters
+    </div>
+  </div>
+  <div class="form-group">
+    <input
+      #roomAmenities="ngModel"
+      required=""
+      class="form-control"
+      type="text"
+      name="amenities"
+      [(ngModel)]="room.amenities"
+      id=""
+      placeholder="Amenities"
+      minlength="6"
+      maxlength="50"
+    />
+    <div class="alert alert-danger" *ngIf="!roomAmenities.pristine && roomAmenities.errors?.['minlength']">
+      Please Introduce a minimum of 6 characters
+    </div>
+  </div>
+  <div class="form-group">
+    <input
+      #roomPrice="ngModel"
+      required=""
+      class="form-control"
+      type="number"
+      name="price"
+      [(ngModel)]="room.price"
+      id=""
+      placeholder="Room price per night"
+      min="0"
+    />
+    <div class="alert alert-danger" *ngIf="!roomPrice.pristine && roomPrice.errors?.['required']">
+      Please Introduce a number
+    </div>
+  </div>
+  <div class="form-group">
+    <input
+      #roomURL="ngModel"
+      required=""
+      class="form-control"
+      type="url"
+      name="photos"
+      [(ngModel)]="room.photos"
+      id=""
+      placeholder="Please provide de URL"
+      minlength="25"
+      maxlength="150"
+    />
+    <div class="alert alert-danger" *ngIf="!roomURL.pristine && roomURL.errors?.['minlength']">
+      Please Introduce a minimum of 25 characters
+    </div>
+  </div>
+  <div class="form-group">
+    <input
+      required=""
+      class="form-control"
+      type="datetime"
+      name="checkInTime"
+      [(ngModel)]="room.checkInTime"
+      id=""
+      placeholder="Check-in Time: DD/MM/YYYY"
+    />
+  </div>
+  <div class="form-group">
+    <input
+      required=""
+      class="form-control"
+      type="datetime"
+      name="checkOutTime"
+      [(ngModel)]="room.checkOutTime"
+      id=""
+      placeholder="Check-out Time: DD/MM/YYYY"
+    />
+  </div>
+  <div>
+    <input
+      class="btn btn-primary"
+      [disabled]="roomsForm.invalid"
+      type="submit"
+      value="Book room"
+    />
+  </div>
+</form>

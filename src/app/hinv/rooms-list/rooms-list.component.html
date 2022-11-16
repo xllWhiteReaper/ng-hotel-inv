@@ -14,8 +14,10 @@ Rooms List:
 		<td>{{ room.price | currency:"EUR" }}</td>
 		<td>{{ room.amenities }}</td>
 		<td>{{ room.checkInTime | date }}</td>
-		<td><button class="btn btn-info" (click)="selectRoom(room)">Select this room</button></td>
-
+		<!-- <td><button class="btn btn-info" (click)="selectRoom(room)">Select this room</button></td> -->
+		<td>
+			<button class="btn btn-info" [routerLink]="['/rooms', room.roomNumber]">Watch Room</button>
+		</td>
 
 	</tr>
 </table>

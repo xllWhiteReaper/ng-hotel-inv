@@ -1,0 +1,56 @@
+Invalid: {{ loginForm.invalid | json }} Valid:
+{{ loginForm.valid | json }} pristine: {{ loginForm.pristine | json }} Errors:
+{{ loginForm.errors | json }}
+<form action="" #loginForm="ngForm" (ngSubmit)="checkCredentials(loginForm)">
+  <div class="form-group">
+    <input
+      #userEmail="ngModel"
+      class="form-control"
+      type="email"
+      name="email"
+      id="email"
+      minlength="15"
+      maxlength="100"
+      [(ngModel)]="loginToken.email"
+      placeholder="Please type your email"
+      appLogin="lightpink"
+      appEmailValidator
+    />
+    <div>
+      {{userEmail.errors | json}}
+    </div>
+  </div>
+  <div
+    class="alert alert-danger"
+    *ngIf="!loginForm.pristine && userEmail.errors?.['minlength']"
+  >
+    Please introduce a minimum of 25 characters
+  </div>
+  <div class="form-group newClass">
+    <input
+      #userPass="ngModel"
+      class="form-control"
+      type="password"
+      name="password"
+      id="password"
+      minlength="5"
+      maxlength="35"
+      [(ngModel)]="loginToken.password"
+      placeholder="Please enter your password"
+      appLogin="steelblue"
+    />
+  </div>
+  <div class="form-group">
+    <button
+      class="btn btn-primary"
+      [disabled]="loginForm.invalid || userPass.pristine || loginForm.pristine"
+    >
+      Login
+    </button>
+  </div>
+</form>
+<div *ngIf="successMessage" class="alert alert-success">
+  <h3>
+    {{ successMessage }}
+  </h3>
+</div>

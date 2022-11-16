@@ -1,6 +1,7 @@
 import { PropertyRead } from '@angular/compiler';
 import { Component, ViewChild, ViewContainerRef,
   AfterViewInit, OnInit, ElementRef } from '@angular/core';
+import { subscribeOn } from 'rxjs';
 import { HinvComponent } from './hinv/hinv.component';
 import { InitService } from './init.service';
 
@@ -10,6 +11,13 @@ import { InitService } from './init.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+
+
+  // if you want to use some data retreival 
+  // without subscribin, you can use snapshot
+  // instead of subscribeOn, however any changes
+  // in the data inside the same view will not 
+  // be updated
   initialConfig: any;
   title = 'hotelInventoryApp';
   

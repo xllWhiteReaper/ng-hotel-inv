@@ -100,4 +100,8 @@ export class RoomsServiceService {
     });
     return this.http.request(request);
   }
+
+  addRoom(){
+    
+  }
 }

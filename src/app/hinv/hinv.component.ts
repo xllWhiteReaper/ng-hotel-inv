@@ -10,6 +10,7 @@ import { HeaderComponent } from '../header/header.component';
 import { Room, RoomList } from './room';
 import { RoomsServiceService } from './services/rooms-service.service';
 
+
 @Component({
   selector: 'app-hinv',
   templateUrl: './hinv.component.html',
